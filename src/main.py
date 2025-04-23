@@ -60,7 +60,8 @@ def main():
                 print(f'A árvore tem {tree_height} de altura')
                 
             case 8:
-                print("Balanceamento da árvore: ")
+                tree_balance = tree.get_balance(root)
+                print(f'O balanceamento atual da árvore é de {tree_balance}')
                 
             case 9:
                 tree.print_tree(root)
