@@ -62,7 +62,7 @@ def main():
                 print("Balanceamento da árvore: ")
                 
             case 9:
-                print("Árvore: ")
+                tree.print_tree(root)
                 
 if __name__ == "__main__":
     main()

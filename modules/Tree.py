@@ -86,3 +86,25 @@ class Tree:
             return self.rotate_left(node)
 
         return node
+    
+
+    def print_tree(self, node, prefix="", is_left=True, is_root=True):
+        if node is not None:
+            if is_root:
+                print("   " + str(node.key))
+            else:
+                print(prefix + ("├── " if is_left else "└── ") + str(node.key))
+
+            new_prefix = prefix + ("│   " if is_left and not is_root else "    ")
+
+            if node.left:
+                self.print_tree(node.left, new_prefix, True, False)
+            else:
+                print(new_prefix + "├── None")
+
+            if node.right:
+                self.print_tree(node.right, new_prefix, False, False)
+            else:
+                print(new_prefix + "└── None")
+        else:
+            print("Árvore vazia")
