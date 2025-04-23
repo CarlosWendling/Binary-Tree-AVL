@@ -4,3 +4,85 @@ class Node:
         self.left = None
         self.right = None
         self.height = 1
+
+
+class Tree:
+    def get_height(self, node):
+        if node:
+            return node.height
+        
+        return 0
+    
+
+    def get_balance(self, node):
+        if node:
+            return self.get_height(node.left) - self.get_height(node.right)
+
+        return 0
+    
+
+    def rotate_right(self, z):
+        # z é o nodo desbalanceado
+        y = z.left
+        t2 = y.right # Filho a direita de y (vai virar filho a esquerda de z)
+
+        # Rotação
+        y.right = z
+        z.left = t2
+
+        # Atualizando alturas -> só precis atualizar dos nós que mudaram de nível
+        z.height = max(self.get_height(z.left), self.get_height(z.right)) + 1
+        y.height = max(self.get_height(y.left), self.get_height(y.right)) + 1
+
+        return y
+
+
+    def rotate_left(self, z):
+        y = z.right
+        t2 = y.left
+
+        y.left = z
+        z.right = t2
+
+        z.height = max(self.get_height(z.left), self.get_height(z.right)) + 1
+        y.height = max(self.get_height(y.left), self.get_height(y.right)) + 1
+
+        return y
+    
+
+    # Função recursiva
+    def insert(self, node, key):
+        # Caso não encontrar um nó, irá inserir um novo
+        if not node:
+            return Node(key)
+        
+        if key > node.key:
+            node.right = self.insert(node.right, key)
+        elif key < node.key:
+            node.left = self.insert(node.left, key)
+        else:
+            return node
+        
+        node.height = max(self.get_height(node.left), self.get_height(node.right)) + 1
+
+        balance = self.get_balance(node)
+
+        # Direita Simples
+        if balance > 1 and key < node.left.key:
+            return self.rotate_right(node)
+
+        # Esquerda Simples
+        if balance < -1 and key > node.right.key:
+            return self.rotate_left(node)
+
+        # Direita Dupla
+        if balance > 1 and key > node.left.key:
+            node.left = self.rotate_left(node.left)
+            return self.rotate_right(node)
+
+        # Esquerda Dupla
+        if balance < -1 and key < node.right.key:
+            node.right = self.rotate_right(node.right)
+            return self.rotate_left(node)
+
+        return node

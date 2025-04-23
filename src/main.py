@@ -1,4 +1,5 @@
 from modules.menu import show_menu
+from modules.Tree import Node, Tree
 
 def is_number():
     while True:
@@ -11,6 +12,10 @@ def is_number():
 
 def main():
     valid_values = [0,1,2,3,4,5,6,7,8,9]
+
+    # Inicializando a árvore vazia
+    tree = Tree()
+    root = None
 
     while True:
         show_menu()
@@ -30,8 +35,11 @@ def main():
                 break
                 
             case 1:
-                input("Qual número você deseja inserir: ")
-                
+                print("Qual número você deseja inserir: ")
+                num = is_number()
+
+                root = tree.insert(root, num)
+                print(f'O número {num} foi inserido!')
             case 2:
                 input("Qual número você deseja buscar: ")
                 
