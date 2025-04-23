@@ -56,7 +56,8 @@ def main():
                 print("Caminho Pós-Ordem: ")
                 
             case 7:
-                print("Altura: ")
+                tree_height = tree.get_height(root)
+                print(f'A árvore tem {tree_height} de altura')
                 
             case 8:
                 print("Balanceamento da árvore: ")

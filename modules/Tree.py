@@ -63,6 +63,7 @@ class Tree:
         else:
             return node
         
+        # Atualiza a altura de cada nodo recursivamente, junto da inserção dos seus descendentes
         node.height = max(self.get_height(node.left), self.get_height(node.right)) + 1
 
         balance = self.get_balance(node)
