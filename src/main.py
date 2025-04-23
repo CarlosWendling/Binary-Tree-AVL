@@ -38,8 +38,13 @@ def main():
                 print("Qual número você deseja inserir: ")
                 num = is_number()
 
-                root = tree.insert(root, num)
-                print(f'O número {num} foi inserido!')
+                num_exists = tree.search(root, num)
+
+                if not num_exists:
+                    root = tree.insert(root, num)
+                    print(f'O número {num} foi inserido!')
+                else:
+                    print("Número já adicionado, não é aceito duplicados")
             case 2:
                 input("Qual número você deseja buscar: ")
                 

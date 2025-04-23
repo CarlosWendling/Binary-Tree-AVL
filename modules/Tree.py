@@ -7,6 +7,15 @@ class Node:
 
 
 class Tree:
+    def search(self, root, key):
+        if root is None or root.key == key:
+            return root
+
+        if key < root.key:
+            return self.search(root.left, key)
+
+        return self.search(root.right, key)
+    
     def get_height(self, node):
         if node:
             return node.height
