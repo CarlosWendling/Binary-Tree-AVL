@@ -64,7 +64,8 @@ def main():
                 format_order("Caminho Em Ordem:", in_order)
                 
             case 6:
-                print("Caminho Pós-Ordem: ")
+                post_order = tree.print_post_order(root)
+                format_order("Caminho Pós-Ordem:", post_order)
                 
             case 7:
                 tree_height = tree.get_height(root)
