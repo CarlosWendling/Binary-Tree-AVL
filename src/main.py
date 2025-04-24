@@ -10,6 +10,10 @@ def is_number():
             print("Por favor, digite um número válido")
 
 
+def format_order(path_name:str, order:list):
+    print(path_name, ", ".join(str(x) for x in order))
+
+
 def main():
     valid_values = [0,1,2,3,4,5,6,7,8,9]
 
@@ -52,7 +56,8 @@ def main():
                 input("Qual número você deseja excluir: ")
                 
             case 4:
-                print("Caminho Pré-Ordem: ")
+                pre_order = tree.print_pre_order(root)
+                format_order("Caminho Pré-Ordem:", pre_order)
                 
             case 5:
                 print("Caminho Em Ordem: ")

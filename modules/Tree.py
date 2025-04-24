@@ -98,6 +98,14 @@ class Tree:
         return node
     
 
+    def print_pre_order(self, node):
+        if not node:
+            return []
+        
+        # Raiz->Sub.Arv da Esquerda->Sub.Arv da Direita
+        return [node.key] + self.print_pre_order(node.left) + self.print_pre_order(node.right)
+
+
     def print_tree(self, node, prefix="", is_left=True, is_root=True):
         if node is not None:
             if is_root:
