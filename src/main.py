@@ -49,9 +49,18 @@ def main():
                     print(f'O número {num} foi inserido!')
                 else:
                     print("Número já adicionado, não é aceito duplicados")
+
             case 2:
-                input("Qual número você deseja buscar: ")
-                
+                print("Qual número você deseja buscar: ")
+                num_search = is_number()
+
+                num_find = tree.search(root, num_search)
+                if num_find:
+                    level = tree.get_height(root) + 1 - num_find.height
+                    print(f'O número {num_search} está no nível {level} da árvore!',)
+                else:
+                    print(f'O número {num_search} ainda não foi inserido na árvore')
+
             case 3:
                 input("Qual número você deseja excluir: ")
                 
