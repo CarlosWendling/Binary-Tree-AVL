@@ -54,15 +54,23 @@ def main():
                 print("Qual número você deseja buscar: ")
                 num_search = is_number()
 
-                num_find = tree.search(root, num_search)
-                if num_find:
-                    level = tree.get_height(root) + 1 - num_find.height
+                num_exists = tree.search(root, num_search)
+                if num_exists:
+                    level = tree.get_height(root) + 1 - num_exists.height
                     print(f'O número {num_search} está no nível {level} da árvore!',)
                 else:
                     print(f'O número {num_search} ainda não foi inserido na árvore')
 
             case 3:
-                input("Qual número você deseja excluir: ")
+                print("Qual número você deseja excluir: ")
+                num_delete = is_number()
+
+                num_exists = tree.search(root, num_delete)
+                if num_exists:
+                    root = tree.delete(root, num_delete)
+                    print(f'O número {num_delete} foi removido!')
+                else:
+                    print(f'O número {num_delete} não se encontra na árvore')
                 
             case 4:
                 pre_order = tree.print_pre_order(root)

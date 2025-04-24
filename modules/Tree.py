@@ -98,6 +98,62 @@ class Tree:
         return node
     
 
+    def max_node_left(self, node):
+        parent_node = node
+
+        while parent_node.right is not None:
+            parent_node = parent_node.right
+        
+        return parent_node
+
+    
+    def delete(self, node, key):
+        if node is None:
+            return node
+        
+        # Busca pelo nó
+        if key > node.key:
+            node.right = self.delete(node.right, key)
+        elif key < node.key:
+            node.left = self.delete(node.left, key)
+        else:
+            # Caso o nodo a ser excluído tenha apenas um filho
+            if node.left is None:
+                son = node.right
+                node = None
+                return son
+            elif node.right is None:
+                son = node.left
+                node = None
+                return son
+            
+            # Caso o nodo tenha dois filhos -> buscar o maior da Sub.Arv da Esquerda 
+            # e depois exclui o original
+            biggest_left_son = self.max_node_left(node.left)
+            node.key = biggest_left_son.key
+            node.left = self.delete(node.left, biggest_left_son.key)
+        
+        node.height = max(self.get_height(node.left), self.get_height(node.right)) + 1
+
+        balance = self.get_balance(node)
+
+        if balance > 1 and key < node.left.key:
+            return self.rotate_right(node)
+
+        if balance < -1 and key > node.right.key:
+            return self.rotate_left(node)
+
+        if balance > 1 and key > node.left.key:
+            node.left = self.rotate_left(node.left)
+            return self.rotate_right(node)
+
+        if balance < -1 and key < node.right.key:
+            node.right = self.rotate_right(node.right)
+            return self.rotate_left(node)
+
+        return node
+
+    
     def print_pre_order(self, node):
         if not node:
             return []
