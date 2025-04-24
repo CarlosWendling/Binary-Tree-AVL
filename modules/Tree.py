@@ -104,6 +104,14 @@ class Tree:
         
         # Raiz->Sub.Arv da Esquerda->Sub.Arv da Direita
         return [node.key] + self.print_pre_order(node.left) + self.print_pre_order(node.right)
+    
+
+    def print_in_order(self, node):
+        if not node:
+            return []
+        
+        # Sub.Arv da Esquerda->Raiz->Sub.Arv da Direita
+        return self.print_in_order(node.left) + [node.key] + self.print_in_order(node.right)
 
 
     def print_tree(self, node, prefix="", is_left=True, is_root=True):

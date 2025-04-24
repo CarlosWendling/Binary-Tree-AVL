@@ -60,7 +60,8 @@ def main():
                 format_order("Caminho Pré-Ordem:", pre_order)
                 
             case 5:
-                print("Caminho Em Ordem: ")
+                in_order = tree.print_in_order(root)
+                format_order("Caminho Em Ordem:", in_order)
                 
             case 6:
                 print("Caminho Pós-Ordem: ")
